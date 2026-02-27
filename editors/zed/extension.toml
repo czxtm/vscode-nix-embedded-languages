@@ -1,0 +1,11 @@
+id = "nix-embedded-languages"
+name = "Nix Embedded Languages"
+description = "Syntax highlighting for embedded languages in Nix multi-line strings."
+version = "0.0.1"
+schema_version = 1
+authors = ["Cooper Maruyama <coopermaruyama@gmail.com>"]
+repository = "https://github.com/coopmoney/vscode-nix-embedded-languages"
+
+[grammars.nix]
+repository = "https://github.com/nix-community/tree-sitter-nix"
+commit = "ea1d87f7996be1329ef6555dcacfa63a69bd55c6"

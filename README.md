@@ -102,9 +102,21 @@ configData = ''
 }
 ```
 
-## Requirements
+## Editor Support
 
-- The [Nix IDE](https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide) extension (or another extension providing `source.nix` grammar)
+### VS Code
+
+Install the extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=coopermaruyama.nix-embedded-languages) or the [Open VSX Registry](https://open-vsx.org/extension/coopermaruyama/nix-embedded-languages).
+
+**Requirements:** The [Nix IDE](https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide) extension (or another extension providing `source.nix` grammar).
+
+All four patterns listed above are supported.
+
+### Zed
+
+Install as a dev extension by pointing Zed to the `editors/zed` directory, or install from the Zed extension registry once published.
+
+> **Note:** The Zed extension uses tree-sitter injection queries. It supports the comment-before-string pattern (Pattern 4) using a Nix comment directly before the multi-line string (e.g., `# json` before `'' ... ''`). Patterns 1–3 (inside-string annotations) are not supported in Zed due to tree-sitter limitations. The extension also includes standard Nix injections for build phases, hooks, and `write*` helpers.
 
 
 ## Contributing
