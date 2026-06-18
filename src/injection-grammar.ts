@@ -29,6 +29,8 @@ export type LanguagesMap = Record<string, string | LanguageConfig>;
  *    data = ''
  *      { "key": "value" }
  *    '';
+ *
+ * 4. Tree-sitter compatible block comment BEFORE the string.
  */
 export class InjectionGrammar {
   private readonly languages: LanguagesMap;
@@ -68,40 +70,71 @@ export class InjectionGrammar {
   private getBeforeStringPatterns() {
     const entries = Object.entries(this.languages);
 
-    return entries.map(([id, config]) => {
+    return entries.flatMap(([id, config]) => {
       const scopeName = typeof config === "string" ? config : config.scopeName;
       const idPattern = id.includes("|") ? `(?:${id})` : id;
       const primaryId = id.split("|")[0];
 
-      return {
-        comment: `Match # syntax: ${primaryId} before a '' string`,
-        begin: `(#\\s*syntax:\\s*${idPattern}\\s*)$`,
-        beginCaptures: {
-          "1": { name: "comment.line.number-sign.nix meta.embedded.hint.nix" },
-        },
-        end: "^\\s*''(?!')",
-        endCaptures: {
-          "0": {
-            name: "string.quoted.other.nix punctuation.definition.string.end.nix",
-          },
-        },
-        patterns: [
-          {
-            comment: "Match the multiline string start and inject language",
-            begin: "''",
-            beginCaptures: {
-              "0": {
-                name: "string.quoted.other.nix punctuation.definition.string.begin.nix",
-              },
-            },
-            end: "(?=^\\s*''(?!'))",
-            contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
-            patterns: [{ include: scopeName }],
-          },
-          { include: "source.nix" },
-        ],
-      };
+      return [
+        this.createBeforeStringPattern({
+          comment: `Match # syntax: ${primaryId} before a '' string`,
+          begin: `(#\\s*syntax:\\s*${idPattern}\\s*)$`,
+          captureName: "comment.line.number-sign.nix meta.embedded.hint.nix",
+          primaryId,
+          scopeName,
+        }),
+        this.createBeforeStringPattern({
+          comment: `Match /* ${primaryId} */ before a '' string`,
+          begin: `(/\\*\\s*${idPattern}\\s*\\*/\\s*)`,
+          captureName: "comment.block.nix meta.embedded.hint.nix",
+          primaryId,
+          scopeName,
+        }),
+      ];
     });
+  }
+
+  private createBeforeStringPattern({
+    comment,
+    begin,
+    captureName,
+    primaryId,
+    scopeName,
+  }: {
+    comment: string;
+    begin: string;
+    captureName: string;
+    primaryId: string;
+    scopeName: string;
+  }) {
+    return {
+      comment,
+      begin,
+      beginCaptures: {
+        "1": { name: captureName },
+      },
+      end: "^\\s*''(?!')",
+      endCaptures: {
+        "0": {
+          name: "string.quoted.other.nix punctuation.definition.string.end.nix",
+        },
+      },
+      patterns: [
+        {
+          comment: "Match the multiline string start and inject language",
+          begin: "''",
+          beginCaptures: {
+            "0": {
+              name: "string.quoted.other.nix punctuation.definition.string.begin.nix",
+            },
+          },
+          end: "(?=^\\s*''(?!'))",
+          contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
+          patterns: [{ include: scopeName }],
+        },
+        { include: "source.nix" },
+      ],
+    };
   }
 
   /**
