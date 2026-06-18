@@ -39,11 +39,83 @@
       ]
     },
     {
+      "comment": "Match /* shell */ before a '' string",
+      "begin": "(/\\*\\s*(?:shell|bash|sh)\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.shell"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
       "comment": "Match # syntax: python before a '' string",
       "begin": "(#\\s*syntax:\\s*(?:python|py)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.python string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.python"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match /* python */ before a '' string",
+      "begin": "(/\\*\\s*(?:python|py)\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -111,11 +183,83 @@
       ]
     },
     {
+      "comment": "Match /* javascript */ before a '' string",
+      "begin": "(/\\*\\s*(?:javascript|js)\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.javascript string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.js"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
       "comment": "Match # syntax: typescript before a '' string",
       "begin": "(#\\s*syntax:\\s*(?:typescript|ts)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.typescript string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.ts"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match /* typescript */ before a '' string",
+      "begin": "(/\\*\\s*(?:typescript|ts)\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -183,11 +327,83 @@
       ]
     },
     {
+      "comment": "Match /* json */ before a '' string",
+      "begin": "(/\\*\\s*json\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.json string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.json"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
       "comment": "Match # syntax: yaml before a '' string",
       "begin": "(#\\s*syntax:\\s*yaml\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.yaml string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.yaml"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match /* yaml */ before a '' string",
+      "begin": "(/\\*\\s*yaml\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -255,11 +471,83 @@
       ]
     },
     {
+      "comment": "Match /* sql */ before a '' string",
+      "begin": "(/\\*\\s*sql\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.sql string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.sql"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
       "comment": "Match # syntax: lua before a '' string",
       "begin": "(#\\s*syntax:\\s*lua\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.lua string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.lua"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match /* lua */ before a '' string",
+      "begin": "(/\\*\\s*lua\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -327,11 +615,83 @@
       ]
     },
     {
+      "comment": "Match /* ruby */ before a '' string",
+      "begin": "(/\\*\\s*ruby\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.ruby string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.ruby"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
       "comment": "Match # syntax: rust before a '' string",
       "begin": "(#\\s*syntax:\\s*rust\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.rust string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.rust"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match /* rust */ before a '' string",
+      "begin": "(/\\*\\s*rust\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -399,11 +759,83 @@
       ]
     },
     {
+      "comment": "Match /* go */ before a '' string",
+      "begin": "(/\\*\\s*go\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.go string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.go"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
       "comment": "Match # syntax: html before a '' string",
       "begin": "(#\\s*syntax:\\s*html\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.html string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "text.html.derivative"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match /* html */ before a '' string",
+      "begin": "(/\\*\\s*html\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -471,11 +903,83 @@
       ]
     },
     {
+      "comment": "Match /* css */ before a '' string",
+      "begin": "(/\\*\\s*css\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.css string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.css"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
       "comment": "Match # syntax: nix before a '' string",
       "begin": "(#\\s*syntax:\\s*nix\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.nix string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match /* nix */ before a '' string",
+      "begin": "(/\\*\\s*nix\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
         }
       },
       "end": "^\\s*''(?!')",

@@ -77,6 +77,16 @@ configData = ''
 '';
 ```
 
+### Pattern 5: Tree-sitter compatible block comment before string
+
+You can also use the Nix block comment directive form recognized by tree-sitter:
+
+```nix
+shellCode = /* shell */ ''
+  cp foo bar
+'';
+```
+
 ## Built-In Languages
 
 | Language | Identifiers |
