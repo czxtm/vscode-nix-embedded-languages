@@ -81,7 +81,7 @@ export class InjectionGrammar {
         beginCaptures: {
           "1": { name: "comment.line.number-sign.nix meta.embedded.hint.nix" },
         },
-        end: "''(?!')",
+        end: "^\\s*''(?!')",
         endCaptures: {
           "0": {
             name: "string.quoted.other.nix punctuation.definition.string.end.nix",
@@ -96,7 +96,7 @@ export class InjectionGrammar {
                 name: "string.quoted.other.nix punctuation.definition.string.begin.nix",
               },
             },
-            end: "(?=''(?!'))",
+            end: "(?=^\\s*''(?!'))",
             contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
             patterns: [{ include: scopeName }],
           },
