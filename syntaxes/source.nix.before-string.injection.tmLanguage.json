@@ -10,7 +10,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -25,7 +25,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.shell string.quoted.other.nix",
           "patterns": [
             {
@@ -46,7 +46,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -61,7 +61,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.python string.quoted.other.nix",
           "patterns": [
             {
@@ -82,7 +82,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -97,7 +97,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.javascript string.quoted.other.nix",
           "patterns": [
             {
@@ -118,7 +118,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -133,7 +133,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.typescript string.quoted.other.nix",
           "patterns": [
             {
@@ -154,7 +154,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -169,7 +169,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.json string.quoted.other.nix",
           "patterns": [
             {
@@ -190,7 +190,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -205,7 +205,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.yaml string.quoted.other.nix",
           "patterns": [
             {
@@ -226,7 +226,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -241,7 +241,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.sql string.quoted.other.nix",
           "patterns": [
             {
@@ -262,7 +262,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -277,7 +277,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.lua string.quoted.other.nix",
           "patterns": [
             {
@@ -298,7 +298,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -313,7 +313,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.ruby string.quoted.other.nix",
           "patterns": [
             {
@@ -334,7 +334,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -349,7 +349,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.rust string.quoted.other.nix",
           "patterns": [
             {
@@ -370,7 +370,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -385,7 +385,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.go string.quoted.other.nix",
           "patterns": [
             {
@@ -406,7 +406,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -421,7 +421,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.html string.quoted.other.nix",
           "patterns": [
             {
@@ -442,7 +442,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -457,7 +457,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.css string.quoted.other.nix",
           "patterns": [
             {
@@ -478,7 +478,7 @@
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
         }
       },
-      "end": "''(?!')",
+      "end": "^\\s*''(?!')",
       "endCaptures": {
         "0": {
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
@@ -493,7 +493,7 @@
               "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
             }
           },
-          "end": "(?=''(?!'))",
+          "end": "(?=^\\s*''(?!'))",
           "contentName": "meta.embedded.block.nix string.quoted.other.nix",
           "patterns": [
             {
