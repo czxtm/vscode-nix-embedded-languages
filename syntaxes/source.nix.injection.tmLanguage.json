@@ -339,6 +339,22 @@
       ]
     },
     {
+      "comment": "Match -- syntax: sql inside multiline string",
+      "begin": "^\\s*--\\s*syntax:\\s*sql\\s*$",
+      "beginCaptures": {
+        "0": {
+          "name": "comment.line.double-dash meta.embedded.hint"
+        }
+      },
+      "while": "^(?!\\s*''(?!'))",
+      "contentName": "meta.embedded.block.sql",
+      "patterns": [
+        {
+          "include": "source.sql"
+        }
+      ]
+    },
+    {
       "comment": "Match # lua inside multiline string",
       "begin": "^\\s*#\\s*lua\\s*$",
       "beginCaptures": {
@@ -376,6 +392,22 @@
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
+        }
+      },
+      "while": "^(?!\\s*''(?!'))",
+      "contentName": "meta.embedded.block.lua",
+      "patterns": [
+        {
+          "include": "source.lua"
+        }
+      ]
+    },
+    {
+      "comment": "Match -- syntax: lua inside multiline string",
+      "begin": "^\\s*--\\s*syntax:\\s*lua\\s*$",
+      "beginCaptures": {
+        "0": {
+          "name": "comment.line.double-dash meta.embedded.hint"
         }
       },
       "while": "^(?!\\s*''(?!'))",

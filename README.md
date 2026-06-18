@@ -50,7 +50,20 @@ code = ''
 '';
 ```
 
-### Pattern 4: Comment before string (for JSON, etc.)
+### Pattern 4: Double-dash comment `-- syntax:` (inside string)
+
+For languages where `--` is a valid comment, such as Lua and SQL:
+
+```nix
+initLua = ''
+  -- syntax: lua
+  function greet(name)
+    print("Hello, " .. name)
+  end
+'';
+```
+
+### Pattern 5: Comment before string (for JSON, etc.)
 
 For languages without comments (like JSON), place the marker BEFORE the string as a Nix comment:
 
