@@ -110,6 +110,7 @@ export class InjectionGrammar {
    * - `# lang` (short form)
    * - `# syntax: lang` (explicit form with # comment)
    * - `// syntax: lang` (explicit form with // comment)
+   * - `-- syntax: lang` (explicit form with -- comment)
    */
   private getInsideStringPatterns() {
     const entries = Object.entries(this.languages);
@@ -150,6 +151,18 @@ export class InjectionGrammar {
         begin: `^\\s*//\\s*syntax:\\s*${idPattern}\\s*$`,
         beginCaptures: {
           "0": { name: "comment.line.double-slash meta.embedded.hint" },
+        },
+        while: "^(?!\\s*''(?!'))",
+        contentName: `meta.embedded.block.${primaryId}`,
+        patterns: [{ include: scopeName }],
+      });
+
+      // -- syntax: lang (Lua-style comment)
+      patterns.push({
+        comment: `Match -- syntax: ${primaryId} inside multiline string`,
+        begin: `^\\s*--\\s*syntax:\\s*${idPattern}\\s*$`,
+        beginCaptures: {
+          "0": { name: "comment.line.double-dash meta.embedded.hint" },
         },
         while: "^(?!\\s*''(?!'))",
         contentName: `meta.embedded.block.${primaryId}`,
