@@ -51,22 +51,6 @@
       ]
     },
     {
-      "comment": "Match -- syntax: shell inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*(?:shell|bash|sh)\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.shell",
-      "patterns": [
-        {
-          "include": "source.shell"
-        }
-      ]
-    },
-    {
       "comment": "Match # python inside multiline string",
       "begin": "^\\s*#\\s*(?:python|py)\\s*$",
       "beginCaptures": {
@@ -104,22 +88,6 @@
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.python",
-      "patterns": [
-        {
-          "include": "source.python"
-        }
-      ]
-    },
-    {
-      "comment": "Match -- syntax: python inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*(?:python|py)\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
         }
       },
       "while": "^(?!\\s*''(?!'))",
@@ -179,22 +147,6 @@
       ]
     },
     {
-      "comment": "Match -- syntax: javascript inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*(?:javascript|js)\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.javascript",
-      "patterns": [
-        {
-          "include": "source.js"
-        }
-      ]
-    },
-    {
       "comment": "Match # typescript inside multiline string",
       "begin": "^\\s*#\\s*(?:typescript|ts)\\s*$",
       "beginCaptures": {
@@ -232,22 +184,6 @@
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.typescript",
-      "patterns": [
-        {
-          "include": "source.ts"
-        }
-      ]
-    },
-    {
-      "comment": "Match -- syntax: typescript inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*(?:typescript|ts)\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
         }
       },
       "while": "^(?!\\s*''(?!'))",
@@ -307,22 +243,6 @@
       ]
     },
     {
-      "comment": "Match -- syntax: json inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*json\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.json",
-      "patterns": [
-        {
-          "include": "source.json"
-        }
-      ]
-    },
-    {
       "comment": "Match # yaml inside multiline string",
       "begin": "^\\s*#\\s*yaml\\s*$",
       "beginCaptures": {
@@ -360,22 +280,6 @@
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.yaml",
-      "patterns": [
-        {
-          "include": "source.yaml"
-        }
-      ]
-    },
-    {
-      "comment": "Match -- syntax: yaml inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*yaml\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
         }
       },
       "while": "^(?!\\s*''(?!'))",
@@ -563,22 +467,6 @@
       ]
     },
     {
-      "comment": "Match -- syntax: ruby inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*ruby\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.ruby",
-      "patterns": [
-        {
-          "include": "source.ruby"
-        }
-      ]
-    },
-    {
       "comment": "Match # rust inside multiline string",
       "begin": "^\\s*#\\s*rust\\s*$",
       "beginCaptures": {
@@ -616,22 +504,6 @@
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.rust",
-      "patterns": [
-        {
-          "include": "source.rust"
-        }
-      ]
-    },
-    {
-      "comment": "Match -- syntax: rust inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*rust\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
         }
       },
       "while": "^(?!\\s*''(?!'))",
@@ -691,22 +563,6 @@
       ]
     },
     {
-      "comment": "Match -- syntax: go inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*go\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.go",
-      "patterns": [
-        {
-          "include": "source.go"
-        }
-      ]
-    },
-    {
       "comment": "Match # html inside multiline string",
       "begin": "^\\s*#\\s*html\\s*$",
       "beginCaptures": {
@@ -744,22 +600,6 @@
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.html",
-      "patterns": [
-        {
-          "include": "text.html.derivative"
-        }
-      ]
-    },
-    {
-      "comment": "Match -- syntax: html inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*html\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
         }
       },
       "while": "^(?!\\s*''(?!'))",
@@ -819,22 +659,6 @@
       ]
     },
     {
-      "comment": "Match -- syntax: css inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*css\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.css",
-      "patterns": [
-        {
-          "include": "source.css"
-        }
-      ]
-    },
-    {
       "comment": "Match # nix inside multiline string",
       "begin": "^\\s*#\\s*nix\\s*$",
       "beginCaptures": {
@@ -872,22 +696,6 @@
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.nix",
-      "patterns": [
-        {
-          "include": "source.nix"
-        }
-      ]
-    },
-    {
-      "comment": "Match -- syntax: nix inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*nix\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-dash meta.embedded.hint"
         }
       },
       "while": "^(?!\\s*''(?!'))",

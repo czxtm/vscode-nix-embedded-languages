@@ -2,14 +2,15 @@ import { describe, expect, test } from "bun:test";
 import { InjectionGrammar } from "../src/injection-grammar";
 
 describe("Lua-style syntax comments", () => {
-  test("generates an inside-string pattern for -- syntax: lua", () => {
-    const grammar = new InjectionGrammar({ lua: "source.lua" }).toJSON();
-    const pattern = grammar.patterns.find(
-      ({ comment }) =>
-        comment === "Match -- syntax: lua inside multiline string",
-    );
+  test("generates -- syntax patterns only for languages that use -- comments", () => {
+    const grammar = new InjectionGrammar({
+      lua: "source.lua",
+      sql: "source.sql",
+      shell: "source.shell",
+      javascript: "source.js",
+    }).toJSON();
 
-    expect(pattern).toEqual({
+    expect(findPattern(grammar, "lua")).toEqual({
       comment: "Match -- syntax: lua inside multiline string",
       begin: "^\\s*--\\s*syntax:\\s*lua\\s*$",
       beginCaptures: {
@@ -19,5 +20,20 @@ describe("Lua-style syntax comments", () => {
       contentName: "meta.embedded.block.lua",
       patterns: [{ include: "source.lua" }],
     });
+    expect(findPattern(grammar, "sql")).toMatchObject({
+      begin: "^\\s*--\\s*syntax:\\s*sql\\s*$",
+      patterns: [{ include: "source.sql" }],
+    });
+    expect(findPattern(grammar, "shell")).toBeUndefined();
+    expect(findPattern(grammar, "javascript")).toBeUndefined();
   });
 });
+
+const findPattern = (
+  grammar: ReturnType<InjectionGrammar["toJSON"]>,
+  language: string,
+) =>
+  grammar.patterns.find(
+    ({ comment }) =>
+      comment === `Match -- syntax: ${language} inside multiline string`,
+  );

@@ -50,9 +50,9 @@ code = ''
 '';
 ```
 
-### Pattern 4: Lua-style comment `-- syntax:` (inside string)
+### Pattern 4: Double-dash comment `-- syntax:` (inside string)
 
-For languages where `--` is a comment:
+For languages where `--` is a valid comment, such as Lua and SQL:
 
 ```nix
 initLua = ''

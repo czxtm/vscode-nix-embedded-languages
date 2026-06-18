@@ -7,6 +7,8 @@ export type LanguageConfig = {
 
 export type LanguagesMap = Record<string, string | LanguageConfig>;
 
+const DOUBLE_DASH_COMMENT_LANGUAGE_IDS = new Set(["lua", "sql"]);
+
 /**
  * TextMate injection grammar for embedded languages inside Nix multi-line strings.
  *
@@ -120,6 +122,7 @@ export class InjectionGrammar {
       const scopeName = typeof config === "string" ? config : config.scopeName;
       const idPattern = id.includes("|") ? `(?:${id})` : id;
       const primaryId = id.split("|")[0];
+      const aliases = id.split("|");
 
       // # lang (short form - backward compatible)
       patterns.push({
@@ -157,17 +160,21 @@ export class InjectionGrammar {
         patterns: [{ include: scopeName }],
       });
 
-      // -- syntax: lang (Lua-style comment)
-      patterns.push({
-        comment: `Match -- syntax: ${primaryId} inside multiline string`,
-        begin: `^\\s*--\\s*syntax:\\s*${idPattern}\\s*$`,
-        beginCaptures: {
-          "0": { name: "comment.line.double-dash meta.embedded.hint" },
-        },
-        while: "^(?!\\s*''(?!'))",
-        contentName: `meta.embedded.block.${primaryId}`,
-        patterns: [{ include: scopeName }],
-      });
+      if (
+        aliases.some((alias) => DOUBLE_DASH_COMMENT_LANGUAGE_IDS.has(alias))
+      ) {
+        // -- syntax: lang (Lua/SQL-style comment)
+        patterns.push({
+          comment: `Match -- syntax: ${primaryId} inside multiline string`,
+          begin: `^\\s*--\\s*syntax:\\s*${idPattern}\\s*$`,
+          beginCaptures: {
+            "0": { name: "comment.line.double-dash meta.embedded.hint" },
+          },
+          while: "^(?!\\s*''(?!'))",
+          contentName: `meta.embedded.block.${primaryId}`,
+          patterns: [{ include: scopeName }],
+        });
+      }
     });
 
     return patterns;
