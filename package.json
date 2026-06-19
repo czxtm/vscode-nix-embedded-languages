@@ -1,6 +1,6 @@
 {
   "name": "nix-embedded-languages",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "displayName": "Nix Embedded Languages",
   "description": "Syntax highlighting for embedded languages in Nix multi-line strings.",
   "icon": "images/icon.png",
