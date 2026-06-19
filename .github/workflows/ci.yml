@@ -129,7 +129,17 @@ jobs:
       - name: Publish to VS Code Marketplace
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: bun run publish
+        run: |
+          # Fail fast with a clear message if the secret is missing/empty,
+          # instead of a cryptic 401 from the marketplace API.
+          if [ -z "$VSCE_PAT" ]; then
+            echo "::error::VSCE_PAT secret is empty. Create an Azure DevOps PAT"
+            echo "::error::with Marketplace > Acquire scope and add it as repo secret VSCE_PAT."
+            echo "::error::Token URL: https://dev.azure.com/_usersSettings/tokens"
+            exit 1
+          fi
+          echo "VSCE_PAT length: ${#VSCE_PAT}"
+          bun run publish
 
       - name: Publish to Open VSX Registry
         uses: HaaLeo/publish-vscode-extension@v2
