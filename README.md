@@ -87,6 +87,32 @@ shellCode = /* shell */ ''
 '';
 ```
 
+### Pattern 6: Automatic detection via `pkgs.writeShellScript`-style calls
+
+When a bound Nix function (e.g. `writeShellScript`, `writeBash`, `writeDash`) is
+called with a `''` multiline string argument on the same line, the string
+content is automatically highlighted as the bound language — no marker needed:
+
+```nix
+script = pkgs.writeShellScript "my-script" ''
+  echo "Hello, world!"
+  ls -la
+'';
+```
+
+Built-in bindings (all highlight as shell/bash):
+
+| Function | Aliases |
+| -------- | ------- |
+| `writeShellScript`, `writeShellScriptBin` | bash |
+| `writeScript`, `writeScriptBin` | legacy bash |
+| `writeBash`, `writeBashBin` | bash |
+| `writeDash` | dash (sh) |
+
+The function name may be prefixed (e.g. `pkgs.writeShellScript`,
+`lib.writeShellScript`) or bare (after `inherit`). The opening `''` must appear
+on the same line as the function call.
+
 ## Built-In Languages
 
 | Language | Identifiers |
@@ -111,6 +137,8 @@ shellCode = /* shell */ ''
 | Name | Description |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `nix-embedded-languages.include` | Add custom languages. Key is the identifier (supports regex), value is either the TextMate scope name or an object with `name` and `scopeName` (required) properties. |
+| `nix-embedded-languages.functionBindings` | Map a Nix function name pattern (regex alternation allowed) to a language identifier from the built-in languages or `include`. When the function is called with a `''` multiline string argument on the same line, the string is automatically highlighted as that language. Merged with built-in bindings (`writeShellScript`, `writeShellScriptBin`, `writeScript`, `writeScriptBin`, `writeBash`, `writeBashBin`, `writeDash` → `shell`); user keys override. |
+| `nix-embedded-languages.enableFunctionBindings` | Enable built-in function-call bindings (default `true`). Set to `false` to disable only the built-in bindings; user-defined `functionBindings` still apply. |
 
 ### Example Configuration
 
@@ -121,6 +149,9 @@ shellCode = /* shell */ ''
       "name": "HCL/Terraform",
       "scopeName": "source.hcl"
     }
+  },
+  "nix-embedded-languages.functionBindings": {
+    "writeNushell|writeNu": "nushell"
   }
 }
 ```

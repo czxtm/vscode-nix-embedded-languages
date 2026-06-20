@@ -3,6 +3,150 @@
   "injectionSelector": "L:source.nix -string",
   "patterns": [
     {
+      "comment": "Match writeShellScript|writeShellScriptBin call before a '' string",
+      "begin": "\\b(?:writeShellScript|writeShellScriptBin)\\b(?=[^\\n]*'')",
+      "beginCaptures": {
+        "0": {
+          "name": "support.function.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.shell"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match writeScript|writeScriptBin call before a '' string",
+      "begin": "\\b(?:writeScript|writeScriptBin)\\b(?=[^\\n]*'')",
+      "beginCaptures": {
+        "0": {
+          "name": "support.function.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.shell"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match writeBash|writeBashBin call before a '' string",
+      "begin": "\\b(?:writeBash|writeBashBin)\\b(?=[^\\n]*'')",
+      "beginCaptures": {
+        "0": {
+          "name": "support.function.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.shell"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match writeDash call before a '' string",
+      "begin": "\\bwriteDash\\b(?=[^\\n]*'')",
+      "beginCaptures": {
+        "0": {
+          "name": "support.function.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.shell"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
       "comment": "Match # syntax: shell before a '' string",
       "begin": "(#\\s*syntax:\\s*(?:shell|bash|sh)\\s*)$",
       "beginCaptures": {
@@ -1002,6 +1146,78 @@
           "patterns": [
             {
               "include": "source.nix"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match # syntax: writeShellScriptBin before a '' string",
+      "begin": "(#\\s*syntax:\\s*writeShellScriptBin\\s*)$",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.writeShellScriptBin string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.sh"
+            }
+          ]
+        },
+        {
+          "include": "source.nix"
+        }
+      ]
+    },
+    {
+      "comment": "Match /* writeShellScriptBin */ before a '' string",
+      "begin": "(/\\*\\s*writeShellScriptBin\\s*\\*/\\s*)",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.nix meta.embedded.hint.nix"
+        }
+      },
+      "end": "^\\s*''(?!')",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "Match the multiline string start and inject language",
+          "begin": "''",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
+            }
+          },
+          "end": "(?=^\\s*''(?!'))",
+          "contentName": "meta.embedded.block.writeShellScriptBin string.quoted.other.nix",
+          "patterns": [
+            {
+              "include": "source.sh"
             }
           ]
         },

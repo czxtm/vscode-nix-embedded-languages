@@ -1,7 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
-import { LANGUAGES } from "./constants";
-import { InjectionGrammar, type LanguagesMap } from "./injection-grammar";
+import { FUNCTION_BINDINGS, LANGUAGES } from "./constants";
+import {
+  InjectionGrammar,
+  type FunctionBindings,
+  type LanguagesMap,
+} from "./injection-grammar";
 
 const ROOT_DIR = path.join(__dirname, "..");
 const SYNTAXES_DIR = path.join(ROOT_DIR, "syntaxes");
@@ -20,8 +24,9 @@ const NIX_BEFORE_STRING_GRAMMAR_PATH = path.join(
  */
 export const generateFiles = (
   allLanguages: LanguagesMap = LANGUAGES,
+  functionBindings: FunctionBindings = FUNCTION_BINDINGS,
 ): boolean => {
-  const injectionGrammar = new InjectionGrammar(allLanguages);
+  const injectionGrammar = new InjectionGrammar(allLanguages, functionBindings);
 
   // Grammar for patterns INSIDE strings (# shell, # syntax: python, // syntax: js)
   const insideStringGrammar = injectionGrammar.toJSON();

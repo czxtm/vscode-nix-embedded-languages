@@ -7,6 +7,15 @@ export type LanguageConfig = {
 
 export type LanguagesMap = Record<string, string | LanguageConfig>;
 
+/**
+ * Maps a Nix function name pattern (regex alternation allowed, e.g.
+ * "writeShellScript|writeShellScriptBin") to a language identifier that
+ * resolves via the `LanguagesMap`. When the function is called with a `''`
+ * multiline string argument, the string content is highlighted as that
+ * language automatically — no `# lang` marker needed.
+ */
+export type FunctionBindings = Record<string, string>;
+
 const DOUBLE_DASH_COMMENT_LANGUAGE_IDS = new Set(["lua", "sql"]);
 
 /**
@@ -36,9 +45,14 @@ const DOUBLE_DASH_COMMENT_LANGUAGE_IDS = new Set(["lua", "sql"]);
  */
 export class InjectionGrammar {
   private readonly languages: LanguagesMap;
+  private readonly functionBindings: FunctionBindings;
 
-  constructor(languages: LanguagesMap = LANGUAGES) {
+  constructor(
+    languages: LanguagesMap = LANGUAGES,
+    functionBindings: FunctionBindings = {},
+  ) {
     this.languages = languages;
+    this.functionBindings = functionBindings;
   }
 
   /**
@@ -60,9 +74,83 @@ export class InjectionGrammar {
     return {
       scopeName: "source.nix.before-string.injection",
       injectionSelector: "L:source.nix -string",
-      patterns: this.getBeforeStringPatterns(),
+      patterns: [
+        ...this.getFunctionCallPatterns(),
+        ...this.getBeforeStringPatterns(),
+      ],
       repository: {},
     };
+  }
+
+  /**
+   * Patterns for `pkgs.writeShellScript`-style calls: when a bound function
+   * name is followed by a `''` string on the same line, highlight the string
+   * content as the bound language without requiring a `# lang` marker.
+   */
+  private getFunctionCallPatterns() {
+    return Object.entries(this.functionBindings).flatMap(
+      ([funcPattern, langId]) => {
+        const resolved = this.resolveLanguage(langId);
+        if (!resolved) {
+          return [];
+        }
+        const { scopeName, primaryId } = resolved;
+        const funcRegex = funcPattern.includes("|")
+          ? `(?:${funcPattern})`
+          : funcPattern;
+        return [
+          {
+            comment: `Match ${funcPattern} call before a '' string`,
+            begin: `\\b${funcRegex}\\b(?=[^\\n]*'')`,
+            beginCaptures: {
+              "0": {
+                name: "support.function.nix meta.embedded.hint.nix",
+              },
+            },
+            end: "^\\s*''(?!')",
+            endCaptures: {
+              "0": {
+                name: "string.quoted.other.nix punctuation.definition.string.end.nix",
+              },
+            },
+            patterns: [
+              {
+                comment: "Match the multiline string start and inject language",
+                begin: "''",
+                beginCaptures: {
+                  "0": {
+                    name: "string.quoted.other.nix punctuation.definition.string.begin.nix",
+                  },
+                },
+                end: "(?=^\\s*''(?!'))",
+                contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
+                patterns: [{ include: scopeName }],
+              },
+              { include: "source.nix" },
+            ],
+          },
+        ];
+      },
+    );
+  }
+
+  /**
+   * Resolve a language identifier (e.g. "shell") to its scope name and
+   * primary id by searching the languages map for a key whose alias list
+   * contains the identifier.
+   */
+  private resolveLanguage(
+    idOrAlias: string,
+  ): { scopeName: string; primaryId: string } | null {
+    for (const [key, config] of Object.entries(this.languages)) {
+      const aliases = key.split("|");
+      if (aliases.includes(idOrAlias)) {
+        const scopeName =
+          typeof config === "string" ? config : config.scopeName;
+        return { scopeName, primaryId: aliases[0] };
+      }
+    }
+    return null;
   }
 
   /**

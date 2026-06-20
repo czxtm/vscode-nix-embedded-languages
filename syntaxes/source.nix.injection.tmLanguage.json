@@ -705,6 +705,54 @@
           "include": "source.nix"
         }
       ]
+    },
+    {
+      "comment": "Match # writeShellScriptBin inside multiline string",
+      "begin": "^\\s*#\\s*writeShellScriptBin\\s*$",
+      "beginCaptures": {
+        "0": {
+          "name": "comment.line.number-sign meta.embedded.hint"
+        }
+      },
+      "while": "^(?!\\s*''(?!'))",
+      "contentName": "meta.embedded.block.writeShellScriptBin",
+      "patterns": [
+        {
+          "include": "source.sh"
+        }
+      ]
+    },
+    {
+      "comment": "Match # syntax: writeShellScriptBin inside multiline string",
+      "begin": "^\\s*#\\s*syntax:\\s*writeShellScriptBin\\s*$",
+      "beginCaptures": {
+        "0": {
+          "name": "comment.line.number-sign meta.embedded.hint"
+        }
+      },
+      "while": "^(?!\\s*''(?!'))",
+      "contentName": "meta.embedded.block.writeShellScriptBin",
+      "patterns": [
+        {
+          "include": "source.sh"
+        }
+      ]
+    },
+    {
+      "comment": "Match // syntax: writeShellScriptBin inside multiline string",
+      "begin": "^\\s*//\\s*syntax:\\s*writeShellScriptBin\\s*$",
+      "beginCaptures": {
+        "0": {
+          "name": "comment.line.double-slash meta.embedded.hint"
+        }
+      },
+      "while": "^(?!\\s*''(?!'))",
+      "contentName": "meta.embedded.block.writeShellScriptBin",
+      "patterns": [
+        {
+          "include": "source.sh"
+        }
+      ]
     }
   ],
   "repository": {}

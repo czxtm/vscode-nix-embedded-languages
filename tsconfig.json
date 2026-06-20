@@ -11,8 +11,9 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "paths": {
-      "@package": ["./package.json"]
-    }
+      "@package": ["./package.json"],
+    },
+    "types": ["bun"],
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
 }

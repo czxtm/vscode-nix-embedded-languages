@@ -1,4 +1,4 @@
-{lib, ...}: {
+{lib, pkgs, ...}: {
 `  # =====================================
   # Nix Embedded Languages - Examples
   # =====================================
@@ -89,6 +89,29 @@
       }
     }
   '';
+
+  # -------------------------------------
+  # Pattern 5: Automatic detection via writeShellScript-style calls
+  # -------------------------------------
+  # Bound functions (writeShellScript, writeBash, writeDash, ...) auto-apply
+  # shell highlighting to their '' argument — no marker needed.
+  functionBindingExamples = {
+    writeShellScriptExample = pkgs.writeShellScript "greet" ''
+      echo "Hello from writeShellScript!"
+      for i in 1 2 3; do
+        echo "$i"
+      done
+    '';
+
+    writeBashExample = pkgs.writeBash ''
+      set -euo pipefail
+      echo "Hello from writeBash"
+    '';
+
+    writeDashExample = pkgs.writeDash "quick" ''
+      echo "Hello from writeDash"
+    '';
+  };
 
   # -------------------------------------
   # Supported Languages
