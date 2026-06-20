@@ -1,5 +1,24 @@
 **
 
+.envrc
+.gitignore
+.gitattributes
+.DS_Store
+devenv.*
+.prettierignore
+biome.json
+eslint.config.mjs
+build.mjs
+tsconfig.json
+stats.json
+example.nix
+node_modules/
+src/
+tests/
+.omo/
+.github/
+.vscode/
+
 !dist/extension.js
 !syntaxes/
 !images/icon.png

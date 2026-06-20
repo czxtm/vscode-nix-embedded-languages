@@ -11,7 +11,7 @@ describe("comment before multiline string", () => {
     );
 
     expect(pattern).toMatchObject({
-      begin: "(#\\s*syntax:\\s*css\\s*)$",
+      begin: "(#\\s*syntax:\\s*(?:css)\\s*)$",
       end: "^\\s*''(?!')",
       patterns: [
         {
@@ -20,7 +20,6 @@ describe("comment before multiline string", () => {
           contentName: "meta.embedded.block.css string.quoted.other.nix",
           patterns: [{ include: "source.css" }],
         },
-        { include: "source.nix" },
       ],
     });
   });

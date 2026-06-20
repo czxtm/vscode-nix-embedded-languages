@@ -8,7 +8,7 @@ export type LanguageConfig = {
 export type LanguagesMap = Record<string, string | LanguageConfig>;
 
 /**
- * Maps a Nix function name pattern (regex alternation allowed, e.g.
+ * Maps a Nix function name pattern (restricted regex fragment allowed, e.g.
  * "writeShellScript|writeShellScriptBin") to a language identifier that
  * resolves via the `LanguagesMap`. When the function is called with a `''`
  * multiline string argument, the string content is highlighted as that
@@ -16,7 +16,48 @@ export type LanguagesMap = Record<string, string | LanguageConfig>;
  */
 export type FunctionBindings = Record<string, string>;
 
+export type VariableMarkerBindings = {
+  prefix?: Record<string, string>;
+  suffix?: Record<string, string>;
+};
+
 const DOUBLE_DASH_COMMENT_LANGUAGE_IDS = new Set(["lua", "sql"]);
+const NIX_IDENTIFIER_CONTINUATION = "[A-Za-z0-9_'-]*";
+
+const REGEX_FRAGMENT_ALLOWED_CHAR = /^[A-Za-z0-9_'|*+?-]$/;
+const REGEX_FRAGMENT_ESCAPABLE_CHARS = new Set(["|", "*", "+", "?", "\\"]);
+
+const isValidRegexFragment = (value: string) => {
+  if (value.length === 0) {
+    return false;
+  }
+
+  for (let index = 0; index < value.length; index += 1) {
+    const char = value[index];
+    if (char === "\\") {
+      const next = value[index + 1];
+      if (!next || !REGEX_FRAGMENT_ESCAPABLE_CHARS.has(next)) {
+        return false;
+      }
+      index += 1;
+      continue;
+    }
+
+    if (!REGEX_FRAGMENT_ALLOWED_CHAR.test(char)) {
+      return false;
+    }
+  }
+
+  try {
+    new RegExp(`(?:${value})`);
+  } catch {
+    return false;
+  }
+
+  return true;
+};
+
+const regexFragment = (value: string) => `(?:${value})`;
 
 /**
  * TextMate injection grammar for embedded languages inside Nix multi-line strings.
@@ -46,13 +87,16 @@ const DOUBLE_DASH_COMMENT_LANGUAGE_IDS = new Set(["lua", "sql"]);
 export class InjectionGrammar {
   private readonly languages: LanguagesMap;
   private readonly functionBindings: FunctionBindings;
+  private readonly variableMarkerBindings: VariableMarkerBindings;
 
   constructor(
     languages: LanguagesMap = LANGUAGES,
     functionBindings: FunctionBindings = {},
+    variableMarkerBindings: VariableMarkerBindings = {},
   ) {
     this.languages = languages;
     this.functionBindings = functionBindings;
+    this.variableMarkerBindings = variableMarkerBindings;
   }
 
   /**
@@ -76,6 +120,7 @@ export class InjectionGrammar {
       injectionSelector: "L:source.nix -string",
       patterns: [
         ...this.getFunctionCallPatterns(),
+        ...this.getVariableMarkerPatterns(),
         ...this.getBeforeStringPatterns(),
       ],
       repository: {},
@@ -84,27 +129,28 @@ export class InjectionGrammar {
 
   /**
    * Patterns for `pkgs.writeShellScript`-style calls: when a bound function
-   * name is followed by a `''` string on the same line, highlight the string
-   * content as the bound language without requiring a `# lang` marker.
+   * name and any same-line arguments are followed by a `''` string, highlight
+   * the string content as the bound language without requiring a `# lang` marker.
    */
   private getFunctionCallPatterns() {
     return Object.entries(this.functionBindings).flatMap(
       ([funcPattern, langId]) => {
         const resolved = this.resolveLanguage(langId);
-        if (!resolved) {
+        if (!resolved || !isValidRegexFragment(funcPattern)) {
           return [];
         }
         const { scopeName, primaryId } = resolved;
-        const funcRegex = funcPattern.includes("|")
-          ? `(?:${funcPattern})`
-          : funcPattern;
+        const funcRegex = regexFragment(funcPattern);
         return [
           {
             comment: `Match ${funcPattern} call before a '' string`,
-            begin: `\\b${funcRegex}\\b(?=[^\\n]*'')`,
+            begin: `\\b(${funcRegex})\\b([^\\n]*?)('')`,
             beginCaptures: {
-              "0": {
+              "1": {
                 name: "support.function.nix meta.embedded.hint.nix",
+              },
+              "3": {
+                name: "string.quoted.other.nix punctuation.definition.string.begin.nix",
               },
             },
             end: "^\\s*''(?!')",
@@ -113,25 +159,64 @@ export class InjectionGrammar {
                 name: "string.quoted.other.nix punctuation.definition.string.end.nix",
               },
             },
-            patterns: [
-              {
-                comment: "Match the multiline string start and inject language",
-                begin: "''",
-                beginCaptures: {
-                  "0": {
-                    name: "string.quoted.other.nix punctuation.definition.string.begin.nix",
-                  },
-                },
-                end: "(?=^\\s*''(?!'))",
-                contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
-                patterns: [{ include: scopeName }],
-              },
-              { include: "source.nix" },
-            ],
+            contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
+            patterns: [{ include: scopeName }],
           },
         ];
       },
     );
+  }
+
+  /**
+   * Patterns for variable names that imply an embedded language, e.g.
+   * `fooScript = ''` when configured with suffix `{ "Script": "shell" }`.
+   */
+  private getVariableMarkerPatterns() {
+    const entries = [
+      ...Object.entries(this.variableMarkerBindings.prefix ?? {}).map(
+        ([marker, langId]) => ({ marker, langId, position: "prefix" as const }),
+      ),
+      ...Object.entries(this.variableMarkerBindings.suffix ?? {}).map(
+        ([marker, langId]) => ({ marker, langId, position: "suffix" as const }),
+      ),
+    ];
+
+    return entries.flatMap(({ marker, langId, position }) => {
+      const resolved = this.resolveLanguage(langId);
+      if (!resolved || !isValidRegexFragment(marker)) {
+        return [];
+      }
+
+      const { scopeName, primaryId } = resolved;
+      const markerRegex = regexFragment(marker);
+      const variableRegex =
+        position === "prefix"
+          ? `${markerRegex}${NIX_IDENTIFIER_CONTINUATION}`
+          : `${NIX_IDENTIFIER_CONTINUATION}${markerRegex}`;
+
+      return [
+        {
+          comment: `Match variable ${position} ${marker} before a '' string`,
+          begin: `\\b(${variableRegex})\\b([^\\n]*?)('')`,
+          beginCaptures: {
+            "1": {
+              name: "variable.other.assignment.nix meta.embedded.hint.nix",
+            },
+            "3": {
+              name: "string.quoted.other.nix punctuation.definition.string.begin.nix",
+            },
+          },
+          end: "^\\s*''(?!')",
+          endCaptures: {
+            "0": {
+              name: "string.quoted.other.nix punctuation.definition.string.end.nix",
+            },
+          },
+          contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
+          patterns: [{ include: scopeName }],
+        },
+      ];
+    });
   }
 
   /**
@@ -143,6 +228,10 @@ export class InjectionGrammar {
     idOrAlias: string,
   ): { scopeName: string; primaryId: string } | null {
     for (const [key, config] of Object.entries(this.languages)) {
+      if (!isValidRegexFragment(key)) {
+        continue;
+      }
+
       const aliases = key.split("|");
       if (aliases.includes(idOrAlias)) {
         const scopeName =
@@ -161,8 +250,12 @@ export class InjectionGrammar {
     const entries = Object.entries(this.languages);
 
     return entries.flatMap(([id, config]) => {
+      if (!isValidRegexFragment(id)) {
+        return [];
+      }
+
       const scopeName = typeof config === "string" ? config : config.scopeName;
-      const idPattern = id.includes("|") ? `(?:${id})` : id;
+      const idPattern = regexFragment(id);
       const primaryId = id.split("|")[0];
 
       return [
@@ -222,7 +315,6 @@ export class InjectionGrammar {
           contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
           patterns: [{ include: scopeName }],
         },
-        { include: "source.nix" },
       ],
     };
   }
@@ -240,8 +332,12 @@ export class InjectionGrammar {
     const patterns: unknown[] = [];
 
     entries.forEach(([id, config]) => {
+      if (!isValidRegexFragment(id)) {
+        return;
+      }
+
       const scopeName = typeof config === "string" ? config : config.scopeName;
-      const idPattern = id.includes("|") ? `(?:${id})` : id;
+      const idPattern = regexFragment(id);
       const primaryId = id.split("|")[0];
       const aliases = id.split("|");
 

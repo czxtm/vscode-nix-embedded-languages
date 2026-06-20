@@ -49,12 +49,22 @@
         "nix-embedded-languages.include": {
           "type": "object",
           "default": {},
-          "description": "An object where the key defines the language identifier with regex and the value specifies the language TextMate scope name. The value can instead be an object with properties `name` and `scopeName` (required)."
+          "description": "Add custom languages. Keys use identifier characters plus the |, *, +, and ? regex operators only; escape those operators if you need literal matching. Values specify the language TextMate scope name, or an object with properties `name` and `scopeName` (required)."
         },
         "nix-embedded-languages.functionBindings": {
           "type": "object",
           "default": {},
-          "description": "Map a Nix function name pattern (regex alternation allowed, e.g. \"writeShellScript|writeShellScriptBin\") to a language identifier from the built-in languages or `include` config. When the function is called with a `''` multiline string argument on the same line, the string content is automatically highlighted as that language — no `# lang` marker needed. Built-in bindings (writeShellScript, writeShellScriptBin, writeScript, writeScriptBin, writeBash, writeBashBin, writeDash -> shell) are merged with this config; user keys override."
+          "description": "Map a Nix function name pattern to a language identifier from the built-in languages or `include` config. Patterns allow identifier characters plus the |, *, +, and ? regex operators only; escape those operators if you need literal matching. When the function is called with a `''` multiline string argument on the same line, the string content is automatically highlighted as that language — no `# lang` marker needed. Built-in bindings (writeShellScript, writeShellScriptBin, writeScript, writeScriptBin, writeBash, writeBashBin, writeDash -> shell) are merged with this config; user keys override."
+        },
+        "nix-embedded-languages.variableMarkers.prefix": {
+          "type": "object",
+          "default": {},
+          "description": "Map variable name prefixes to language identifiers from the built-in languages or `include` config. For example, { \"script\": \"shell\" } highlights variables like `scriptFoo = ''` as shell. Markers allow identifier characters plus the |, *, +, and ? regex operators only; escape those operators if you need literal matching."
+        },
+        "nix-embedded-languages.variableMarkers.suffix": {
+          "type": "object",
+          "default": {},
+          "description": "Map variable name suffixes to language identifiers from the built-in languages or `include` config. For example, { \"Script\": \"shell\" } highlights variables like `fooScript = ''` as shell. Markers allow identifier characters plus the |, *, +, and ? regex operators only; escape those operators if you need literal matching."
         },
         "nix-embedded-languages.enableFunctionBindings": {
           "type": "boolean",

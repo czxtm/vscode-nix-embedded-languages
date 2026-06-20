@@ -2,15 +2,19 @@ import packageJson from "@package";
 
 export const SUB_INCLUDE_CONFIG = "include";
 export const SUB_FUNCTION_BINDINGS_CONFIG = "functionBindings";
+export const SUB_VARIABLE_MARKER_PREFIX_CONFIG = "variableMarkers.prefix";
+export const SUB_VARIABLE_MARKER_SUFFIX_CONFIG = "variableMarkers.suffix";
 export const SUB_ENABLE_FUNCTION_BINDINGS_CONFIG = "enableFunctionBindings";
 export const INCLUDE_CONFIG = `${packageJson.name}.${SUB_INCLUDE_CONFIG}`;
 export const FUNCTION_BINDINGS_CONFIG = `${packageJson.name}.${SUB_FUNCTION_BINDINGS_CONFIG}`;
+export const VARIABLE_MARKER_PREFIX_CONFIG = `${packageJson.name}.${SUB_VARIABLE_MARKER_PREFIX_CONFIG}`;
+export const VARIABLE_MARKER_SUFFIX_CONFIG = `${packageJson.name}.${SUB_VARIABLE_MARKER_SUFFIX_CONFIG}`;
 export const ENABLE_FUNCTION_BINDINGS_CONFIG = `${packageJson.name}.${SUB_ENABLE_FUNCTION_BINDINGS_CONFIG}`;
 export const VERSION_STATE = "version";
 
 /**
  * Built-in language mappings.
- * Keys can use regex alternation (e.g., "shell|bash|sh") for aliases.
+ * Keys can use restricted regex fragments (e.g., "shell|bash|sh") for aliases.
  * Values are either a scope name string or an object with scopeName.
  */
 export const LANGUAGES: Record<
@@ -34,8 +38,8 @@ export const LANGUAGES: Record<
 };
 
 /**
- * Built-in function bindings: maps a Nix function name pattern (regex
- * alternation allowed) to a language identifier that exists in `LANGUAGES`
+ * Built-in function bindings: maps a Nix function name pattern (restricted
+ * regex fragment allowed) to a language identifier that exists in `LANGUAGES`
  * (or the user's `include` config). When the function is called with a `''`
  * multiline string argument on the same line, the string content is
  * automatically highlighted as that language — no `# lang` marker needed.

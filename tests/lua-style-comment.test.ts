@@ -12,7 +12,7 @@ describe("Lua-style syntax comments", () => {
 
     expect(findPattern(grammar, "lua")).toEqual({
       comment: "Match -- syntax: lua inside multiline string",
-      begin: "^\\s*--\\s*syntax:\\s*lua\\s*$",
+      begin: "^\\s*--\\s*syntax:\\s*(?:lua)\\s*$",
       beginCaptures: {
         "0": { name: "comment.line.double-dash meta.embedded.hint" },
       },
@@ -21,7 +21,7 @@ describe("Lua-style syntax comments", () => {
       patterns: [{ include: "source.lua" }],
     });
     expect(findPattern(grammar, "sql")).toMatchObject({
-      begin: "^\\s*--\\s*syntax:\\s*sql\\s*$",
+      begin: "^\\s*--\\s*syntax:\\s*(?:sql)\\s*$",
       patterns: [{ include: "source.sql" }],
     });
     expect(findPattern(grammar, "shell")).toBeUndefined();

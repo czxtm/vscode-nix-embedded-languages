@@ -21,25 +21,21 @@ describe("function-call bindings", () => {
       "writeShellScript|writeShellScriptBin",
     );
     expect(pattern).toMatchObject({
-      begin: "\\b(?:writeShellScript|writeShellScriptBin)\\b(?=[^\\n]*'')",
+      begin: "\\b((?:writeShellScript|writeShellScriptBin))\\b([^\\n]*?)('')",
       end: "^\\s*''(?!')",
       beginCaptures: {
-        "0": { name: "support.function.nix meta.embedded.hint.nix" },
+        "1": { name: "support.function.nix meta.embedded.hint.nix" },
+        "3": {
+          name: "string.quoted.other.nix punctuation.definition.string.begin.nix",
+        },
       },
       endCaptures: {
         "0": {
           name: "string.quoted.other.nix punctuation.definition.string.end.nix",
         },
       },
-      patterns: [
-        {
-          begin: "''",
-          end: "(?=^\\s*''(?!'))",
-          contentName: "meta.embedded.block.shell string.quoted.other.nix",
-          patterns: [{ include: "source.shell" }],
-        },
-        { include: "source.nix" },
-      ],
+      contentName: "meta.embedded.block.shell string.quoted.other.nix",
+      patterns: [{ include: "source.shell" }],
     });
   });
 
@@ -63,6 +59,16 @@ describe("function-call bindings", () => {
     expect(findFunctionPattern(grammar, "myFunc|myOtherFunc")).toBeUndefined();
   });
 
+  test("skips function patterns with unsupported regex syntax", () => {
+    const grammar = new InjectionGrammar(
+      { "shell|bash|sh": "source.shell" },
+      { "write(Shell)Script": "shell", "write.Script": "shell" },
+    ).toBeforeStringJSON();
+
+    expect(findFunctionPattern(grammar, "write(Shell)Script")).toBeUndefined();
+    expect(findFunctionPattern(grammar, "write.Script")).toBeUndefined();
+  });
+
   test("resolves language id by any alias in the languages map", () => {
     const grammar = new InjectionGrammar(
       { "shell|bash|sh": "source.shell" },
@@ -70,25 +76,31 @@ describe("function-call bindings", () => {
     ).toBeforeStringJSON();
     const pattern = findFunctionPattern(grammar, "writeBash");
     expect(pattern).toMatchObject({
-      begin: "\\bwriteBash\\b(?=[^\\n]*'')",
-      patterns: [
-        expect.objectContaining({
-          contentName: "meta.embedded.block.shell string.quoted.other.nix",
-          patterns: [{ include: "source.shell" }],
-        }),
-        { include: "source.nix" },
-      ],
+      begin: "\\b((?:writeBash))\\b([^\\n]*?)('')",
+      contentName: "meta.embedded.block.shell string.quoted.other.nix",
+      patterns: [{ include: "source.shell" }],
     });
   });
 
-  test("single function name (no alternation) is not wrapped in a group", () => {
+  test("single function name only captures the function as group 1", () => {
     const grammar = new InjectionGrammar(
       { "shell|bash|sh": "source.shell" },
       { writeDash: "shell" },
     ).toBeforeStringJSON();
     const pattern = findFunctionPattern(grammar, "writeDash");
     expect(pattern).toMatchObject({
-      begin: "\\bwriteDash\\b(?=[^\\n]*'')",
+      begin: "\\b((?:writeDash))\\b([^\\n]*?)('')",
+    });
+  });
+
+  test("allows simple regex operators in function patterns", () => {
+    const grammar = new InjectionGrammar(
+      { "shell|bash|sh": "source.shell" },
+      { "writeBash|writeBashBin": "shell" },
+    ).toBeforeStringJSON();
+    const pattern = findFunctionPattern(grammar, "writeBash|writeBashBin");
+    expect(pattern).toMatchObject({
+      begin: "\\b((?:writeBash|writeBashBin))\\b([^\\n]*?)('')",
     });
   });
 });

@@ -5,6 +5,7 @@ import {
   type FunctionBindings,
   InjectionGrammar,
   type LanguagesMap,
+  type VariableMarkerBindings,
 } from "./injection-grammar";
 
 const ROOT_DIR = path.join(__dirname, "..");
@@ -25,8 +26,13 @@ const NIX_BEFORE_STRING_GRAMMAR_PATH = path.join(
 export const generateFiles = (
   allLanguages: LanguagesMap = LANGUAGES,
   functionBindings: FunctionBindings = FUNCTION_BINDINGS,
+  variableMarkerBindings: VariableMarkerBindings = {},
 ): boolean => {
-  const injectionGrammar = new InjectionGrammar(allLanguages, functionBindings);
+  const injectionGrammar = new InjectionGrammar(
+    allLanguages,
+    functionBindings,
+    variableMarkerBindings,
+  );
 
   // Grammar for patterns INSIDE strings (# shell, # syntax: python, // syntax: js)
   const insideStringGrammar = injectionGrammar.toJSON();

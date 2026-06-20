@@ -196,7 +196,7 @@
     },
     {
       "comment": "Match # json inside multiline string",
-      "begin": "^\\s*#\\s*json\\s*$",
+      "begin": "^\\s*#\\s*(?:json)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -212,7 +212,7 @@
     },
     {
       "comment": "Match # syntax: json inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*json\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:json)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -228,7 +228,7 @@
     },
     {
       "comment": "Match // syntax: json inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*json\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:json)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -244,7 +244,7 @@
     },
     {
       "comment": "Match # yaml inside multiline string",
-      "begin": "^\\s*#\\s*yaml\\s*$",
+      "begin": "^\\s*#\\s*(?:yaml)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -260,7 +260,7 @@
     },
     {
       "comment": "Match # syntax: yaml inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*yaml\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:yaml)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -276,7 +276,7 @@
     },
     {
       "comment": "Match // syntax: yaml inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*yaml\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:yaml)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -292,7 +292,7 @@
     },
     {
       "comment": "Match # sql inside multiline string",
-      "begin": "^\\s*#\\s*sql\\s*$",
+      "begin": "^\\s*#\\s*(?:sql)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -308,7 +308,7 @@
     },
     {
       "comment": "Match # syntax: sql inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*sql\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:sql)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -324,7 +324,7 @@
     },
     {
       "comment": "Match // syntax: sql inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*sql\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:sql)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -340,7 +340,7 @@
     },
     {
       "comment": "Match -- syntax: sql inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*sql\\s*$",
+      "begin": "^\\s*--\\s*syntax:\\s*(?:sql)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-dash meta.embedded.hint"
@@ -356,7 +356,7 @@
     },
     {
       "comment": "Match # lua inside multiline string",
-      "begin": "^\\s*#\\s*lua\\s*$",
+      "begin": "^\\s*#\\s*(?:lua)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -372,7 +372,7 @@
     },
     {
       "comment": "Match # syntax: lua inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*lua\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:lua)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -388,7 +388,7 @@
     },
     {
       "comment": "Match // syntax: lua inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*lua\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:lua)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -404,7 +404,7 @@
     },
     {
       "comment": "Match -- syntax: lua inside multiline string",
-      "begin": "^\\s*--\\s*syntax:\\s*lua\\s*$",
+      "begin": "^\\s*--\\s*syntax:\\s*(?:lua)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-dash meta.embedded.hint"
@@ -420,7 +420,7 @@
     },
     {
       "comment": "Match # ruby inside multiline string",
-      "begin": "^\\s*#\\s*ruby\\s*$",
+      "begin": "^\\s*#\\s*(?:ruby)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -436,7 +436,7 @@
     },
     {
       "comment": "Match # syntax: ruby inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*ruby\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:ruby)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -452,7 +452,7 @@
     },
     {
       "comment": "Match // syntax: ruby inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*ruby\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:ruby)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -468,7 +468,7 @@
     },
     {
       "comment": "Match # rust inside multiline string",
-      "begin": "^\\s*#\\s*rust\\s*$",
+      "begin": "^\\s*#\\s*(?:rust)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -484,7 +484,7 @@
     },
     {
       "comment": "Match # syntax: rust inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*rust\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:rust)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -500,7 +500,7 @@
     },
     {
       "comment": "Match // syntax: rust inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*rust\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:rust)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -516,7 +516,7 @@
     },
     {
       "comment": "Match # go inside multiline string",
-      "begin": "^\\s*#\\s*go\\s*$",
+      "begin": "^\\s*#\\s*(?:go)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -532,7 +532,7 @@
     },
     {
       "comment": "Match # syntax: go inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*go\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:go)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -548,7 +548,7 @@
     },
     {
       "comment": "Match // syntax: go inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*go\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:go)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -564,7 +564,7 @@
     },
     {
       "comment": "Match # html inside multiline string",
-      "begin": "^\\s*#\\s*html\\s*$",
+      "begin": "^\\s*#\\s*(?:html)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -580,7 +580,7 @@
     },
     {
       "comment": "Match # syntax: html inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*html\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:html)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -596,7 +596,7 @@
     },
     {
       "comment": "Match // syntax: html inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*html\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:html)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -612,7 +612,7 @@
     },
     {
       "comment": "Match # css inside multiline string",
-      "begin": "^\\s*#\\s*css\\s*$",
+      "begin": "^\\s*#\\s*(?:css)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -628,7 +628,7 @@
     },
     {
       "comment": "Match # syntax: css inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*css\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:css)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -644,7 +644,7 @@
     },
     {
       "comment": "Match // syntax: css inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*css\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:css)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -660,7 +660,7 @@
     },
     {
       "comment": "Match # nix inside multiline string",
-      "begin": "^\\s*#\\s*nix\\s*$",
+      "begin": "^\\s*#\\s*(?:nix)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -676,7 +676,7 @@
     },
     {
       "comment": "Match # syntax: nix inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*nix\\s*$",
+      "begin": "^\\s*#\\s*syntax:\\s*(?:nix)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.number-sign meta.embedded.hint"
@@ -692,7 +692,7 @@
     },
     {
       "comment": "Match // syntax: nix inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*nix\\s*$",
+      "begin": "^\\s*//\\s*syntax:\\s*(?:nix)\\s*$",
       "beginCaptures": {
         "0": {
           "name": "comment.line.double-slash meta.embedded.hint"
@@ -703,54 +703,6 @@
       "patterns": [
         {
           "include": "source.nix"
-        }
-      ]
-    },
-    {
-      "comment": "Match # writeShellScriptBin inside multiline string",
-      "begin": "^\\s*#\\s*writeShellScriptBin\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.number-sign meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.writeShellScriptBin",
-      "patterns": [
-        {
-          "include": "source.sh"
-        }
-      ]
-    },
-    {
-      "comment": "Match # syntax: writeShellScriptBin inside multiline string",
-      "begin": "^\\s*#\\s*syntax:\\s*writeShellScriptBin\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.number-sign meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.writeShellScriptBin",
-      "patterns": [
-        {
-          "include": "source.sh"
-        }
-      ]
-    },
-    {
-      "comment": "Match // syntax: writeShellScriptBin inside multiline string",
-      "begin": "^\\s*//\\s*syntax:\\s*writeShellScriptBin\\s*$",
-      "beginCaptures": {
-        "0": {
-          "name": "comment.line.double-slash meta.embedded.hint"
-        }
-      },
-      "while": "^(?!\\s*''(?!'))",
-      "contentName": "meta.embedded.block.writeShellScriptBin",
-      "patterns": [
-        {
-          "include": "source.sh"
         }
       ]
     }

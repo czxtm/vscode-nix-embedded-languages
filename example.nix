@@ -1,5 +1,5 @@
-{lib, pkgs, ...}: {
-`  # =====================================
+{ lib, pkgs, ... }: {
+  # =====================================
   # Nix Embedded Languages - Examples
   # =====================================
   # This file demonstrates all supported syntax patterns for embedded languages.
@@ -90,6 +90,10 @@
     }
   '';
 
+  myScript = ''
+    echo "hello"
+  '';
+
   # -------------------------------------
   # Pattern 5: Automatic detection via writeShellScript-style calls
   # -------------------------------------
@@ -103,6 +107,13 @@
       done
     '';
 
+    writeShellScriptBinExample = pkgs.writeShellScriptBin "greet-bin" ''
+      echo "Hello from writeShellScriptBin!"
+      for i in 1 2 3; do
+        echo "$i"
+      done
+    '';
+
     writeBashExample = pkgs.writeBash ''
       set -euo pipefail
       echo "Hello from writeBash"
@@ -110,6 +121,11 @@
 
     writeDashExample = pkgs.writeDash "quick" ''
       echo "Hello from writeDash"
+    '';
+
+    # With nix-embedded-languages.variableMarkers.suffix = { Script = "shell"; }
+    fooScript = ''
+      echo "Hello from a Script-suffixed variable"
     '';
   };
 

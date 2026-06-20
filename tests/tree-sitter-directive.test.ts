@@ -23,7 +23,6 @@ describe("tree-sitter compatible block comment directives", () => {
           contentName: "meta.embedded.block.shell string.quoted.other.nix",
           patterns: [{ include: "source.shell" }],
         },
-        { include: "source.nix" },
       ],
     });
   });

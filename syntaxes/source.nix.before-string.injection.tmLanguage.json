@@ -4,10 +4,13 @@
   "patterns": [
     {
       "comment": "Match writeShellScript|writeShellScriptBin call before a '' string",
-      "begin": "\\b(?:writeShellScript|writeShellScriptBin)\\b(?=[^\\n]*'')",
+      "begin": "\\b((?:writeShellScript|writeShellScriptBin))\\b([^\\n]*?)('')",
       "beginCaptures": {
-        "0": {
+        "1": {
           "name": "support.function.nix meta.embedded.hint.nix"
+        },
+        "3": {
+          "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -16,34 +19,22 @@
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
         }
       },
+      "contentName": "meta.embedded.block.shell string.quoted.other.nix",
       "patterns": [
         {
-          "comment": "Match the multiline string start and inject language",
-          "begin": "''",
-          "beginCaptures": {
-            "0": {
-              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
-            }
-          },
-          "end": "(?=^\\s*''(?!'))",
-          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
-          "patterns": [
-            {
-              "include": "source.shell"
-            }
-          ]
-        },
-        {
-          "include": "source.nix"
+          "include": "source.shell"
         }
       ]
     },
     {
       "comment": "Match writeScript|writeScriptBin call before a '' string",
-      "begin": "\\b(?:writeScript|writeScriptBin)\\b(?=[^\\n]*'')",
+      "begin": "\\b((?:writeScript|writeScriptBin))\\b([^\\n]*?)('')",
       "beginCaptures": {
-        "0": {
+        "1": {
           "name": "support.function.nix meta.embedded.hint.nix"
+        },
+        "3": {
+          "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -52,34 +43,22 @@
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
         }
       },
+      "contentName": "meta.embedded.block.shell string.quoted.other.nix",
       "patterns": [
         {
-          "comment": "Match the multiline string start and inject language",
-          "begin": "''",
-          "beginCaptures": {
-            "0": {
-              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
-            }
-          },
-          "end": "(?=^\\s*''(?!'))",
-          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
-          "patterns": [
-            {
-              "include": "source.shell"
-            }
-          ]
-        },
-        {
-          "include": "source.nix"
+          "include": "source.shell"
         }
       ]
     },
     {
       "comment": "Match writeBash|writeBashBin call before a '' string",
-      "begin": "\\b(?:writeBash|writeBashBin)\\b(?=[^\\n]*'')",
+      "begin": "\\b((?:writeBash|writeBashBin))\\b([^\\n]*?)('')",
       "beginCaptures": {
-        "0": {
+        "1": {
           "name": "support.function.nix meta.embedded.hint.nix"
+        },
+        "3": {
+          "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -88,34 +67,22 @@
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
         }
       },
+      "contentName": "meta.embedded.block.shell string.quoted.other.nix",
       "patterns": [
         {
-          "comment": "Match the multiline string start and inject language",
-          "begin": "''",
-          "beginCaptures": {
-            "0": {
-              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
-            }
-          },
-          "end": "(?=^\\s*''(?!'))",
-          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
-          "patterns": [
-            {
-              "include": "source.shell"
-            }
-          ]
-        },
-        {
-          "include": "source.nix"
+          "include": "source.shell"
         }
       ]
     },
     {
       "comment": "Match writeDash call before a '' string",
-      "begin": "\\bwriteDash\\b(?=[^\\n]*'')",
+      "begin": "\\b((?:writeDash))\\b([^\\n]*?)('')",
       "beginCaptures": {
-        "0": {
+        "1": {
           "name": "support.function.nix meta.embedded.hint.nix"
+        },
+        "3": {
+          "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
         }
       },
       "end": "^\\s*''(?!')",
@@ -124,25 +91,10 @@
           "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
         }
       },
+      "contentName": "meta.embedded.block.shell string.quoted.other.nix",
       "patterns": [
         {
-          "comment": "Match the multiline string start and inject language",
-          "begin": "''",
-          "beginCaptures": {
-            "0": {
-              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
-            }
-          },
-          "end": "(?=^\\s*''(?!'))",
-          "contentName": "meta.embedded.block.shell string.quoted.other.nix",
-          "patterns": [
-            {
-              "include": "source.shell"
-            }
-          ]
-        },
-        {
-          "include": "source.nix"
+          "include": "source.shell"
         }
       ]
     },
@@ -176,9 +128,6 @@
               "include": "source.shell"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
@@ -212,9 +161,6 @@
               "include": "source.shell"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
@@ -248,9 +194,6 @@
               "include": "source.python"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
@@ -284,9 +227,6 @@
               "include": "source.python"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
@@ -320,9 +260,6 @@
               "include": "source.js"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
@@ -356,9 +293,6 @@
               "include": "source.js"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
@@ -392,9 +326,6 @@
               "include": "source.ts"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
@@ -428,15 +359,12 @@
               "include": "source.ts"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: json before a '' string",
-      "begin": "(#\\s*syntax:\\s*json\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:json)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -464,15 +392,12 @@
               "include": "source.json"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* json */ before a '' string",
-      "begin": "(/\\*\\s*json\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:json)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -500,15 +425,12 @@
               "include": "source.json"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: yaml before a '' string",
-      "begin": "(#\\s*syntax:\\s*yaml\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:yaml)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -536,15 +458,12 @@
               "include": "source.yaml"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* yaml */ before a '' string",
-      "begin": "(/\\*\\s*yaml\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:yaml)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -572,15 +491,12 @@
               "include": "source.yaml"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: sql before a '' string",
-      "begin": "(#\\s*syntax:\\s*sql\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:sql)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -608,15 +524,12 @@
               "include": "source.sql"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* sql */ before a '' string",
-      "begin": "(/\\*\\s*sql\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:sql)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -644,15 +557,12 @@
               "include": "source.sql"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: lua before a '' string",
-      "begin": "(#\\s*syntax:\\s*lua\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:lua)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -680,15 +590,12 @@
               "include": "source.lua"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* lua */ before a '' string",
-      "begin": "(/\\*\\s*lua\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:lua)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -716,15 +623,12 @@
               "include": "source.lua"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: ruby before a '' string",
-      "begin": "(#\\s*syntax:\\s*ruby\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:ruby)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -752,15 +656,12 @@
               "include": "source.ruby"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* ruby */ before a '' string",
-      "begin": "(/\\*\\s*ruby\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:ruby)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -788,15 +689,12 @@
               "include": "source.ruby"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: rust before a '' string",
-      "begin": "(#\\s*syntax:\\s*rust\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:rust)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -824,15 +722,12 @@
               "include": "source.rust"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* rust */ before a '' string",
-      "begin": "(/\\*\\s*rust\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:rust)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -860,15 +755,12 @@
               "include": "source.rust"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: go before a '' string",
-      "begin": "(#\\s*syntax:\\s*go\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:go)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -896,15 +788,12 @@
               "include": "source.go"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* go */ before a '' string",
-      "begin": "(/\\*\\s*go\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:go)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -932,15 +821,12 @@
               "include": "source.go"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: html before a '' string",
-      "begin": "(#\\s*syntax:\\s*html\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:html)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -968,15 +854,12 @@
               "include": "text.html.derivative"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* html */ before a '' string",
-      "begin": "(/\\*\\s*html\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:html)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -1004,15 +887,12 @@
               "include": "text.html.derivative"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: css before a '' string",
-      "begin": "(#\\s*syntax:\\s*css\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:css)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -1040,15 +920,12 @@
               "include": "source.css"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* css */ before a '' string",
-      "begin": "(/\\*\\s*css\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:css)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -1076,15 +953,12 @@
               "include": "source.css"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match # syntax: nix before a '' string",
-      "begin": "(#\\s*syntax:\\s*nix\\s*)$",
+      "begin": "(#\\s*syntax:\\s*(?:nix)\\s*)$",
       "beginCaptures": {
         "1": {
           "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
@@ -1112,15 +986,12 @@
               "include": "source.nix"
             }
           ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     },
     {
       "comment": "Match /* nix */ before a '' string",
-      "begin": "(/\\*\\s*nix\\s*\\*/\\s*)",
+      "begin": "(/\\*\\s*(?:nix)\\s*\\*/\\s*)",
       "beginCaptures": {
         "1": {
           "name": "comment.block.nix meta.embedded.hint.nix"
@@ -1148,81 +1019,6 @@
               "include": "source.nix"
             }
           ]
-        },
-        {
-          "include": "source.nix"
-        }
-      ]
-    },
-    {
-      "comment": "Match # syntax: writeShellScriptBin before a '' string",
-      "begin": "(#\\s*syntax:\\s*writeShellScriptBin\\s*)$",
-      "beginCaptures": {
-        "1": {
-          "name": "comment.line.number-sign.nix meta.embedded.hint.nix"
-        }
-      },
-      "end": "^\\s*''(?!')",
-      "endCaptures": {
-        "0": {
-          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
-        }
-      },
-      "patterns": [
-        {
-          "comment": "Match the multiline string start and inject language",
-          "begin": "''",
-          "beginCaptures": {
-            "0": {
-              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
-            }
-          },
-          "end": "(?=^\\s*''(?!'))",
-          "contentName": "meta.embedded.block.writeShellScriptBin string.quoted.other.nix",
-          "patterns": [
-            {
-              "include": "source.sh"
-            }
-          ]
-        },
-        {
-          "include": "source.nix"
-        }
-      ]
-    },
-    {
-      "comment": "Match /* writeShellScriptBin */ before a '' string",
-      "begin": "(/\\*\\s*writeShellScriptBin\\s*\\*/\\s*)",
-      "beginCaptures": {
-        "1": {
-          "name": "comment.block.nix meta.embedded.hint.nix"
-        }
-      },
-      "end": "^\\s*''(?!')",
-      "endCaptures": {
-        "0": {
-          "name": "string.quoted.other.nix punctuation.definition.string.end.nix"
-        }
-      },
-      "patterns": [
-        {
-          "comment": "Match the multiline string start and inject language",
-          "begin": "''",
-          "beginCaptures": {
-            "0": {
-              "name": "string.quoted.other.nix punctuation.definition.string.begin.nix"
-            }
-          },
-          "end": "(?=^\\s*''(?!'))",
-          "contentName": "meta.embedded.block.writeShellScriptBin string.quoted.other.nix",
-          "patterns": [
-            {
-              "include": "source.sh"
-            }
-          ]
-        },
-        {
-          "include": "source.nix"
         }
       ]
     }

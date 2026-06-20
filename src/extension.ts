@@ -9,10 +9,18 @@ import {
   SUB_ENABLE_FUNCTION_BINDINGS_CONFIG,
   SUB_FUNCTION_BINDINGS_CONFIG,
   SUB_INCLUDE_CONFIG,
+  SUB_VARIABLE_MARKER_PREFIX_CONFIG,
+  SUB_VARIABLE_MARKER_SUFFIX_CONFIG,
+  VARIABLE_MARKER_PREFIX_CONFIG,
+  VARIABLE_MARKER_SUFFIX_CONFIG,
   VERSION_STATE,
 } from "./constants";
 import { generateFiles } from "./generate";
-import type { FunctionBindings, LanguagesMap } from "./injection-grammar";
+import type {
+  FunctionBindings,
+  LanguagesMap,
+  VariableMarkerBindings,
+} from "./injection-grammar";
 
 const updateExtension = () => {
   const settings = vscode.workspace.getConfiguration(packageJson.name);
@@ -30,7 +38,20 @@ const updateExtension = () => {
     ...userFunctionBindings,
   };
 
-  const filesChanged = generateFiles(allLanguages, allFunctionBindings);
+  const variableMarkerBindings: VariableMarkerBindings = {
+    prefix:
+      settings.get<Record<string, string>>(SUB_VARIABLE_MARKER_PREFIX_CONFIG) ??
+      {},
+    suffix:
+      settings.get<Record<string, string>>(SUB_VARIABLE_MARKER_SUFFIX_CONFIG) ??
+      {},
+  };
+
+  const filesChanged = generateFiles(
+    allLanguages,
+    allFunctionBindings,
+    variableMarkerBindings,
+  );
 
   if (filesChanged) {
     vscode.window
@@ -57,6 +78,8 @@ export const activate = (context: vscode.ExtensionContext) => {
       if (
         event.affectsConfiguration(INCLUDE_CONFIG) ||
         event.affectsConfiguration(FUNCTION_BINDINGS_CONFIG) ||
+        event.affectsConfiguration(VARIABLE_MARKER_PREFIX_CONFIG) ||
+        event.affectsConfiguration(VARIABLE_MARKER_SUFFIX_CONFIG) ||
         event.affectsConfiguration(ENABLE_FUNCTION_BINDINGS_CONFIG)
       ) {
         updateExtension();
