@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { FUNCTION_BINDINGS, LANGUAGES } from "./constants";
 import {
-  InjectionGrammar,
   type FunctionBindings,
+  InjectionGrammar,
   type LanguagesMap,
 } from "./injection-grammar";
 

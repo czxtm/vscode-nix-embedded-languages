@@ -16,7 +16,10 @@ describe("function-call bindings", () => {
       { "writeShellScript|writeShellScriptBin": "shell" },
     ).toBeforeStringJSON();
 
-    const pattern = findFunctionPattern(grammar, "writeShellScript|writeShellScriptBin");
+    const pattern = findFunctionPattern(
+      grammar,
+      "writeShellScript|writeShellScriptBin",
+    );
     expect(pattern).toMatchObject({
       begin: "\\b(?:writeShellScript|writeShellScriptBin)\\b(?=[^\\n]*'')",
       end: "^\\s*''(?!')",
@@ -57,9 +60,7 @@ describe("function-call bindings", () => {
       { "shell|bash|sh": "source.shell" },
       { "myFunc|myOtherFunc": "nonexistent-lang" },
     ).toBeforeStringJSON();
-    expect(
-      findFunctionPattern(grammar, "myFunc|myOtherFunc"),
-    ).toBeUndefined();
+    expect(findFunctionPattern(grammar, "myFunc|myOtherFunc")).toBeUndefined();
   });
 
   test("resolves language id by any alias in the languages map", () => {
@@ -106,7 +107,9 @@ describe("enableFunctionBindings toggle (simulated)", () => {
       merged,
     ).toBeforeStringJSON();
 
-    expect(findFunctionPattern(grammar, "writeShellScript|writeShellScriptBin")).toBeUndefined();
+    expect(
+      findFunctionPattern(grammar, "writeShellScript|writeShellScriptBin"),
+    ).toBeUndefined();
     expect(findFunctionPattern(grammar, "myCustomFunc")).toBeDefined();
   });
 });
