@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { InjectionGrammar } from "../src/injection-grammar";
+import { embeddedPatterns } from "./helpers";
 
 describe("comment before multiline string", () => {
   test("keeps the outer pattern open past an assignment string opener", () => {
@@ -18,7 +19,7 @@ describe("comment before multiline string", () => {
           begin: "''",
           end: "(?=^\\s*''(?!'))",
           contentName: "meta.embedded.block.css string.quoted.other.nix",
-          patterns: [{ include: "source.css" }],
+          patterns: embeddedPatterns("source.css"),
         },
       ],
     });

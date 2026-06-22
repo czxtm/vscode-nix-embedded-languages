@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { InjectionGrammar } from "../src/injection-grammar";
+import { embeddedPatterns } from "./helpers";
 
 const findFunctionPattern = (
   grammar: ReturnType<InjectionGrammar["toBeforeStringJSON"]>,
@@ -35,7 +36,7 @@ describe("function-call bindings", () => {
         },
       },
       contentName: "meta.embedded.block.shell string.quoted.other.nix",
-      patterns: [{ include: "source.shell" }],
+      patterns: embeddedPatterns("source.shell"),
     });
   });
 
@@ -78,7 +79,7 @@ describe("function-call bindings", () => {
     expect(pattern).toMatchObject({
       begin: "\\b((?:writeBash))\\b([^\\n]*?)('')",
       contentName: "meta.embedded.block.shell string.quoted.other.nix",
-      patterns: [{ include: "source.shell" }],
+      patterns: embeddedPatterns("source.shell"),
     });
   });
 

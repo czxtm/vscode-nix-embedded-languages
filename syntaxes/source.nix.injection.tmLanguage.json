@@ -14,6 +14,27 @@
       "contentName": "meta.embedded.block.shell",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.shell"
         }
       ]
@@ -29,6 +50,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.shell",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.shell"
         }
@@ -46,6 +88,27 @@
       "contentName": "meta.embedded.block.shell",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.shell"
         }
       ]
@@ -61,6 +124,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.python",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.python"
         }
@@ -78,6 +162,27 @@
       "contentName": "meta.embedded.block.python",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.python"
         }
       ]
@@ -93,6 +198,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.python",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.python"
         }
@@ -110,6 +236,27 @@
       "contentName": "meta.embedded.block.javascript",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.js"
         }
       ]
@@ -125,6 +272,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.javascript",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.js"
         }
@@ -142,6 +310,27 @@
       "contentName": "meta.embedded.block.javascript",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.js"
         }
       ]
@@ -157,6 +346,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.typescript",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.ts"
         }
@@ -174,6 +384,27 @@
       "contentName": "meta.embedded.block.typescript",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.ts"
         }
       ]
@@ -189,6 +420,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.typescript",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.ts"
         }
@@ -206,6 +458,27 @@
       "contentName": "meta.embedded.block.json",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.json"
         }
       ]
@@ -221,6 +494,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.json",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.json"
         }
@@ -238,6 +532,27 @@
       "contentName": "meta.embedded.block.json",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.json"
         }
       ]
@@ -253,6 +568,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.yaml",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.yaml"
         }
@@ -270,6 +606,27 @@
       "contentName": "meta.embedded.block.yaml",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.yaml"
         }
       ]
@@ -285,6 +642,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.yaml",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.yaml"
         }
@@ -302,6 +680,27 @@
       "contentName": "meta.embedded.block.sql",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.sql"
         }
       ]
@@ -317,6 +716,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.sql",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.sql"
         }
@@ -334,6 +754,27 @@
       "contentName": "meta.embedded.block.sql",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.sql"
         }
       ]
@@ -349,6 +790,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.sql",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.sql"
         }
@@ -366,6 +828,27 @@
       "contentName": "meta.embedded.block.lua",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.lua"
         }
       ]
@@ -381,6 +864,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.lua",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.lua"
         }
@@ -398,6 +902,27 @@
       "contentName": "meta.embedded.block.lua",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.lua"
         }
       ]
@@ -413,6 +938,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.lua",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.lua"
         }
@@ -430,6 +976,27 @@
       "contentName": "meta.embedded.block.ruby",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.ruby"
         }
       ]
@@ -445,6 +1012,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.ruby",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.ruby"
         }
@@ -462,6 +1050,27 @@
       "contentName": "meta.embedded.block.ruby",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.ruby"
         }
       ]
@@ -477,6 +1086,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.rust",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.rust"
         }
@@ -494,6 +1124,27 @@
       "contentName": "meta.embedded.block.rust",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.rust"
         }
       ]
@@ -509,6 +1160,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.rust",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.rust"
         }
@@ -526,6 +1198,27 @@
       "contentName": "meta.embedded.block.go",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.go"
         }
       ]
@@ -541,6 +1234,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.go",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.go"
         }
@@ -558,6 +1272,27 @@
       "contentName": "meta.embedded.block.go",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.go"
         }
       ]
@@ -573,6 +1308,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.html",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "text.html.derivative"
         }
@@ -590,6 +1346,27 @@
       "contentName": "meta.embedded.block.html",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "text.html.derivative"
         }
       ]
@@ -605,6 +1382,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.html",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "text.html.derivative"
         }
@@ -622,6 +1420,27 @@
       "contentName": "meta.embedded.block.css",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.css"
         }
       ]
@@ -637,6 +1456,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.css",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.css"
         }
@@ -654,6 +1494,27 @@
       "contentName": "meta.embedded.block.css",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.css"
         }
       ]
@@ -669,6 +1530,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.nix",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.nix"
         }
@@ -686,6 +1568,27 @@
       "contentName": "meta.embedded.block.nix",
       "patterns": [
         {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
+        {
           "include": "source.nix"
         }
       ]
@@ -701,6 +1604,27 @@
       "while": "^(?!\\s*''(?!'))",
       "contentName": "meta.embedded.block.nix",
       "patterns": [
+        {
+          "comment": "Match Nix interpolation inside embedded language",
+          "begin": "(?<!'')\\$\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.begin.nix"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.embedded.end.nix"
+            }
+          },
+          "contentName": "meta.embedded.expression.nix",
+          "patterns": [
+            {
+              "include": "source.nix"
+            }
+          ]
+        },
         {
           "include": "source.nix"
         }

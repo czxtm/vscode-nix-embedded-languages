@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { InjectionGrammar } from "../src/injection-grammar";
+import { embeddedPatterns } from "./helpers";
 
 describe("tree-sitter compatible block comment directives", () => {
   test("generates a before-string pattern for /* shell */", () => {
@@ -21,7 +22,7 @@ describe("tree-sitter compatible block comment directives", () => {
           begin: "''",
           end: "(?=^\\s*''(?!'))",
           contentName: "meta.embedded.block.shell string.quoted.other.nix",
-          patterns: [{ include: "source.shell" }],
+          patterns: embeddedPatterns("source.shell"),
         },
       ],
     });

@@ -125,7 +125,7 @@
 
     # With nix-embedded-languages.variableMarkers.suffix = { Script = "shell"; }
     fooScript = ''
-      echo "Hello from a Script-suffixed variable"
+      echo "Hello from a  variable"
     '';
   };
 
@@ -288,7 +288,7 @@
     # helper to create a menu
     menu = {
       description = "Show the Devenv menu";
-      exec = ''
+      exec = /* shell */ ''
         # nix-embedded-languages: shellscript
         ROOT="''${DEVENV_ROOT:-$PWD}"
         KIWI=156; ORANGE=215; PINK=212; PURPLE=99; PRIMARY=7; BRIGHT=15; FAINT=103; DARK=238;

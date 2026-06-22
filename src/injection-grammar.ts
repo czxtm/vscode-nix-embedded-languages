@@ -59,6 +59,20 @@ const isValidRegexFragment = (value: string) => {
 
 const regexFragment = (value: string) => `(?:${value})`;
 
+const NIX_INTERPOLATION_PATTERN = {
+  comment: "Match Nix interpolation inside embedded language",
+  begin: "(?<!'')\\$\\{",
+  beginCaptures: {
+    "0": { name: "punctuation.section.embedded.begin.nix" },
+  },
+  end: "\\}",
+  endCaptures: {
+    "0": { name: "punctuation.section.embedded.end.nix" },
+  },
+  contentName: "meta.embedded.expression.nix",
+  patterns: [{ include: "source.nix" }],
+};
+
 /**
  * TextMate injection grammar for embedded languages inside Nix multi-line strings.
  *
@@ -160,7 +174,7 @@ export class InjectionGrammar {
               },
             },
             contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
-            patterns: [{ include: scopeName }],
+            patterns: [NIX_INTERPOLATION_PATTERN, { include: scopeName }],
           },
         ];
       },
@@ -213,7 +227,7 @@ export class InjectionGrammar {
             },
           },
           contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
-          patterns: [{ include: scopeName }],
+          patterns: [NIX_INTERPOLATION_PATTERN, { include: scopeName }],
         },
       ];
     });
@@ -313,7 +327,7 @@ export class InjectionGrammar {
           },
           end: "(?=^\\s*''(?!'))",
           contentName: `meta.embedded.block.${primaryId} string.quoted.other.nix`,
-          patterns: [{ include: scopeName }],
+          patterns: [NIX_INTERPOLATION_PATTERN, { include: scopeName }],
         },
       ],
     };
@@ -350,7 +364,7 @@ export class InjectionGrammar {
         },
         while: "^(?!\\s*''(?!'))",
         contentName: `meta.embedded.block.${primaryId}`,
-        patterns: [{ include: scopeName }],
+        patterns: [NIX_INTERPOLATION_PATTERN, { include: scopeName }],
       });
 
       // # syntax: lang (explicit shell-style comment)
@@ -362,7 +376,7 @@ export class InjectionGrammar {
         },
         while: "^(?!\\s*''(?!'))",
         contentName: `meta.embedded.block.${primaryId}`,
-        patterns: [{ include: scopeName }],
+        patterns: [NIX_INTERPOLATION_PATTERN, { include: scopeName }],
       });
 
       // // syntax: lang (C-style comment)
@@ -374,7 +388,7 @@ export class InjectionGrammar {
         },
         while: "^(?!\\s*''(?!'))",
         contentName: `meta.embedded.block.${primaryId}`,
-        patterns: [{ include: scopeName }],
+        patterns: [NIX_INTERPOLATION_PATTERN, { include: scopeName }],
       });
 
       if (
@@ -389,7 +403,7 @@ export class InjectionGrammar {
           },
           while: "^(?!\\s*''(?!'))",
           contentName: `meta.embedded.block.${primaryId}`,
-          patterns: [{ include: scopeName }],
+          patterns: [NIX_INTERPOLATION_PATTERN, { include: scopeName }],
         });
       }
     });

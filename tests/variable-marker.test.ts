@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { InjectionGrammar } from "../src/injection-grammar";
+import { embeddedPatterns } from "./helpers";
 
 const findVariableMarkerPattern = (
   grammar: ReturnType<InjectionGrammar["toBeforeStringJSON"]>,
@@ -36,7 +37,7 @@ describe("variable marker bindings", () => {
         },
       },
       contentName: "meta.embedded.block.shell string.quoted.other.nix",
-      patterns: [{ include: "source.shell" }],
+      patterns: embeddedPatterns("source.shell"),
     });
   });
 
@@ -51,7 +52,7 @@ describe("variable marker bindings", () => {
     expect(pattern).toMatchObject({
       begin: "\\b((?:py)[A-Za-z0-9_'-]*)\\b([^\\n]*?)('')",
       contentName: "meta.embedded.block.python string.quoted.other.nix",
-      patterns: [{ include: "source.python" }],
+      patterns: embeddedPatterns("source.python"),
     });
   });
 

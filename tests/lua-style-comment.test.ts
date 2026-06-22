@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { InjectionGrammar } from "../src/injection-grammar";
+import { embeddedPatterns } from "./helpers";
 
 describe("Lua-style syntax comments", () => {
   test("generates -- syntax patterns only for languages that use -- comments", () => {
@@ -18,11 +19,11 @@ describe("Lua-style syntax comments", () => {
       },
       while: "^(?!\\s*''(?!'))",
       contentName: "meta.embedded.block.lua",
-      patterns: [{ include: "source.lua" }],
+      patterns: embeddedPatterns("source.lua"),
     });
     expect(findPattern(grammar, "sql")).toMatchObject({
       begin: "^\\s*--\\s*syntax:\\s*(?:sql)\\s*$",
-      patterns: [{ include: "source.sql" }],
+      patterns: embeddedPatterns("source.sql"),
     });
     expect(findPattern(grammar, "shell")).toBeUndefined();
     expect(findPattern(grammar, "javascript")).toBeUndefined();
